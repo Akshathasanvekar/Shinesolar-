@@ -182,7 +182,7 @@ header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
 .hero {
   min-height: 90vh;
   background: linear-gradient(135deg, rgba(11,35,65,.88) 0%, rgba(7,24,41,.75) 100%),
-              url("../images/solar-banner.jpg") center/cover no-repeat;
+              url("https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
   color: white;
   display: flex;
   align-items: center;

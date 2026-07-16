@@ -182,7 +182,7 @@ header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
 .hero {
   min-height: 90vh;
   background: linear-gradient(135deg, rgba(11,35,65,.88) 0%, rgba(7,24,41,.75) 100%),
-              url("../images/solar-banner.jpg") center/cover no-repeat;
+              url("https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
   color: white;
   display: flex;
   align-items: center;
@@ -359,22 +359,12 @@ header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
 .card {
   background: white;
   padding: 35px 28px;
-  clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%);
+  border-radius: var(--radius-lg);
   text-align: center;
   box-shadow: var(--shadow);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-}
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 0 28px 28px 0;
-  border-color: transparent var(--gold) transparent transparent;
-  z-index: 1;
 }
 .card:hover {
   transform: translateY(-10px);
@@ -396,6 +386,7 @@ header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
   position: relative;
   margin: 0 -28px 0;
   overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 .card-photo-wrap img {
   width: 100%;
@@ -425,6 +416,20 @@ header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.12); }
 }
 .card-icon-badge i { font-size: 24px; color: var(--primary); margin: 0; }
 .card-icon-badge--standalone { margin: 0 auto 18px; }
+
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .card {
+    padding: 28px 22px;
+  }
+  .card-photo-wrap {
+    margin: 0 -22px 0;
+  }
+  .card-photo-wrap img { height: 190px; }
+}
 
 /* Compact card variant (short, icon-badge style) */
 .card--sm { padding: 26px 22px 22px; }
@@ -2151,6 +2156,36 @@ footer {
   .card-top { top: 10px; right: 10px; }
   .card-bottom { bottom: 10px; left: 10px; }
   .hero-v2-stats { justify-content: center; }
+}
+
+/* Compact hero on phones: the desktop hero's tall padding/gaps feel stretched
+   and un-app-like on a small screen, so tighten the rhythm considerably */
+@media (max-width: 768px) {
+  .hero-v2 {
+    min-height: 0;
+    padding: 48px 0 56px;
+  }
+  .hero-badge { margin-bottom: 16px; font-size: 12px; padding: 7px 14px; }
+  .hero-v2-h1 { margin: 14px 0 16px; }
+  .hero-v2-sub { margin: 0 auto 24px; font-size: 15.5px; }
+  .hero-v2-btns { margin-bottom: 22px; gap: 12px; }
+  .hero-v2-trust { margin-bottom: 26px; gap: 12px 18px; }
+  .hero-v2-stats { padding: 16px 18px; }
+  .hero-dots { margin-top: 18px; }
+}
+
+@media (max-width: 480px) {
+  .hero-v2-btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-v2-btns .btn,
+  .hero-v2-btns .btn-outline-white {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-v2-trust { gap: 10px 16px; }
+  .hero-v2-trust span { font-size: 12px; }
 }
 
 /* =============================================

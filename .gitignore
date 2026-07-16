@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Django
+db.sqlite3
+staticfiles/
+*.log
+
+# Media uploads (see note below re: production persistence)
+media/
+
+# Env / secrets
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
