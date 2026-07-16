@@ -99,12 +99,18 @@ USE_TZ = True
 # Static Files
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 # NOTE: STATICFILES_DIRS is intentionally empty. The 'website' app is in
 # INSTALLED_APPS, so Django's AppDirectoriesFinder already auto-discovers
 # website/static/ on its own. Adding that same path here too caused every
 # static file to be found by both finders ("Found another file with the
 # destination path ..." warnings during collectstatic).
 STATICFILES_DIRS = []
+=======
+STATICFILES_DIRS = [
+    BASE_DIR / 'website' / 'static',
+]
+>>>>>>> 0494f98e4c92078e3e891b904d566066c0b12e8f
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
