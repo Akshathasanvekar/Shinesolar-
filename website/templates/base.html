@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shine Solar Energy - Reliable Solar Solutions for Karnataka">
+  <title>{% block title %}Shine Solar Energy{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'images/logo.png' %}" alt="Shine Solar Energy">
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>About</a></li>
+        <li><a href="{% url 'products' %}" {% if request.resolver_match.url_name == 'products' or 'products' in request.path %}class="active"{% endif %}>Products</a></li>
+        <li><a href="{% url 'projects' %}" {% if request.resolver_match.url_name == 'projects' %}class="active"{% endif %}>Projects</a></li>
+        <li><a href="{% url 'services' %}" {% if request.resolver_match.url_name == 'services' %}class="active"{% endif %}>Services</a></li>
+        <li><a href="{% url 'calculator' %}" {% if request.resolver_match.url_name == 'calculator' %}class="active"{% endif %}>Calculator</a></li>
+        <li><a href="{% url 'blog' %}" {% if request.resolver_match.url_name == 'blog' %}class="active"{% endif %}>Blog</a></li>
+        <li><a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>Contact</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'admin_dashboard' %}"><i class="fas fa-user-shield"></i> Login </a></li>
+        {% else %}
+          <li><a href="{% url 'admin_login' %}"><i class="fas fa-right-to-bracket"></i> Login </a></li>
+        {% endif %}
+      </ul>
+
+      <div class="nav-right">
+        <a href="tel:+918123715799" class="call-btn"><i class="fa-solid fa-phone"></i> +91 81237 15799</a>
+        <a href="https://wa.me/918123715799" class="whatsapp-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img src="{% static 'images/logo.png' %}" alt="Shine Solar" style="height:100px;background:#fff;border-radius:8px;padding:4px;margin-bottom:15px;">
+        <p>Clean Energy. Bright Future.<br>Karnataka's trusted solar partner since 2018.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/sunit.satyappanavar/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/sunit_satyappanavar/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/918123715799"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'products' %}">Products</a></li>
+          <li><a href="{% url 'projects' %}">Projects</a></li>
+          <li><a href="{% url 'services' %}">Services</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Residential Solar</a></li>
+          <li><a href="#">Commercial Solar</a></li>
+          <li><a href="#">Industrial Solar</a></li>
+          <li><a href="#">Solar Maintenance</a></li>
+          <li><a href="{% url 'calculator' %}">Solar Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p><i class="fas fa-phone"></i> +91 8123715799</p>
+        <p><i class="fas fa-envelope"></i> shinesolare@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> #2, Rajmahal Complex, Behind Sharada Hotel, Near Rotary School, New Cotton Market, Hubballi – 580029, Karnataka, India</p>
+        <p><i class="fas fa-clock"></i> Mon–Sat: 9am – 6pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Shine Solar Energy. All Rights Reserved. | Designed with ☀️ in Karnataka</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="topBtn" onclick="scrollToTop()" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Call Float (appears on scroll, next to WhatsApp) -->
+<a href="tel:+918123715799" id="callFloat" class="call-float" aria-label="Call us"><i class="fas fa-phone"></i></a>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/918123715799" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script src="{% static 'js/script.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

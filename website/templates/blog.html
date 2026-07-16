@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Solar Blog | Shine Solar Energy{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+  <div class="container">
+    <h1>Solar Blog</h1>
+    <p>Latest Solar Energy News, Tips & Updates</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">Knowledge Hub</span>
+      <h2>Latest Articles</h2>
+      <p>Stay informed about solar energy, government subsidies, and maintenance tips.</p>
+    </div>
+
+    <div class="cards reveal">
+      {% for post in posts %}
+      <div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;">
+        {% if post.display_image_url %}
+        <div style="height:180px;overflow:hidden;">
+          <img src="{{ post.display_image_url }}" alt="{{ post.title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        {% else %}
+        <div style="height:120px;background:linear-gradient(135deg,#071829,#143C6A);display:flex;align-items:center;justify-content:center;">
+          <i class="fas fa-sun" style="font-size:40px;color:rgba(244,180,0,.6);"></i>
+        </div>
+        {% endif %}
+        <div style="padding:22px;flex:1;display:flex;flex-direction:column;">
+          <div style="font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;">
+            <i class="fas fa-calendar-alt" style="margin-right:5px;"></i>{{ post.created_at|date:"d M Y" }}
+          </div>
+          <h3 style="font-size:18px;margin:0 0 10px;color:#1e293b;">{{ post.title }}</h3>
+          {% if post.excerpt %}
+          <p style="color:#64748b;font-size:14px;flex:1;margin:0 0 16px;">{{ post.excerpt }}</p>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <!-- Shown only when no blog posts exist yet in the admin dashboard -->
+      <div class="card" style="grid-column:1 / -1;max-width:640px;margin:0 auto;padding:0;overflow:hidden;text-align:center;">
+        <div style="height:260px;overflow:hidden;">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Solar articles coming soon" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="padding:30px;">
+          <h3 style="font-size:20px;margin:0 0 10px;color:#1e293b;">New Articles Coming Soon</h3>
+          <p style="color:#64748b;font-size:14px;margin:0;">We're working on fresh articles about solar energy benefits, government subsidies, and maintenance tips. Check back soon!</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
