@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home | Shine Solar Energy{% endblock %}
+
+{% block content %}
+
+<!-- HERO / SLIDING BANNER -->
+<section class="hero-v2" id="heroSlider">
+  <div class="hero-slides">
+    {% if hero_slides %}
+      {% for slide in hero_slides %}
+        <div class="hero-slide{% if forloop.first %} active{% endif %}" style="background-image:url('{{ slide.display_image_url }}')"></div>
+      {% endfor %}
+    {% else %}
+      {# Fallback slides shown only if no images have been uploaded yet via the dashboard #}
+      <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?fm=jpg&q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1655300256335-beef51a914fe?fm=jpg&q=80&w=1600&auto=format&fit=crop')"></div>
+    {% endif %}
+  </div>
+  <div class="hero-particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container">
+    <div class="hero-v2-container">
+      <div class="hero-v2-text">
+        <div class="hero-badge"><i class="fas fa-sun"></i> Karnataka's #1 Solar Provider</div>
+        <h1 class="hero-v2-h1">Power Your Future<br>With <span class="hero-gold-line">Solar Energy</span></h1>
+        <p class="hero-v2-sub">Reliable, affordable and sustainable solar energy solutions for homes, businesses and industries across Karnataka — designed, installed and supported end to end.</p>
+
+        <div class="hero-v2-btns">
+          <a href="{% url 'contact' %}" class="btn btn-primary btn-glow"><i class="fas fa-bolt"></i> Get Free Quote</a>
+          <a href="{% url 'calculator' %}" class="btn-outline-white"><i class="fas fa-calculator"></i> Solar Calculator</a>
+        </div>
+
+        <div class="hero-v2-trust">
+          <span><i class="fas fa-circle-check"></i> MNRE Certified</span>
+          <span><i class="fas fa-circle-check"></i> 25-Year Support</span>
+          <span><i class="fas fa-circle-check"></i> 0% Down Payment EMI</span>
+        </div>
+
+        <div class="hero-v2-stats">
+          <div class="hero-v2-stat">
+            <div><span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-lbl">Installations</div>
+          </div>
+          <div class="hero-v2-stat-divider"></div>
+          <div class="hero-v2-stat">
+            <div><span class="stat-num" data-target="8">0</span></div>
+            <div class="stat-lbl">Years Experience</div>
+          </div>
+          <div class="hero-v2-stat-divider"></div>
+          <div class="hero-v2-stat">
+            <div><span class="stat-num" data-target="5">0</span><span class="stat-plus">MW+</span></div>
+            <div class="stat-lbl">Installed Capacity</div>
+          </div>
+        </div>
+
+        <div class="hero-dots" id="heroDots">
+          {% if hero_slides %}
+            {% for slide in hero_slides %}
+              <button class="hero-dot{% if forloop.first %} active{% endif %}" data-slide="{{ forloop.counter0 }}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+          {% else %}
+            <button class="hero-dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="hero-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="hero-dot" data-slide="2" aria-label="Slide 3"></button>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path fill="#f8fafc" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"></path></svg>
+  </div>
+</section>
+
+<!-- WELCOME SECTION -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-content">
+        <div class="section-title reveal" style="text-align:left;margin-bottom:22px;">
+          <span class="label">Why Choose Us</span>
+          <h2 style="text-align:left;">Karnataka's Most Trusted Solar Partner</h2>
+        </div>
+        <p style="color:#64748b;margin-bottom:30px;">Shine Solar Energy provides complete solar energy solutions designed to meet your power needs. We deliver high-quality solar systems with professional installation and reliable long-term support.</p>
+        <ul class="why-list">
+          <li>
+            <div class="why-icon"><i class="fas fa-certificate"></i></div>
+            <div class="why-text"><h4>Government Certified</h4><p>MNRE approved installer with all government subsidies handled by us.</p></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-tools"></i></div>
+            <div class="why-text"><h4>Professional Installation</h4><p>Experienced technicians with 8+ years of solar installation expertise.</p></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-headset"></i></div>
+            <div class="why-text"><h4>25-Year Support</h4><p>Comprehensive AMC and after-sales service with lifetime technical support.</p></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-rupee-sign"></i></div>
+            <div class="why-text"><h4>EMI Available</h4><p>Easy financing with 0% interest EMI options and subsidy assistance.</p></div>
+          </li>
+        </ul>
+        <a href="{% url 'about' %}" class="btn btn-primary" style="margin-top:10px;"><i class="fas fa-arrow-right"></i> Know More</a>
+      </div>
+      <div class="why-image reveal">
+        <div class="why-visual-box">
+          <div class="why-visual-glow"></div>
+          <div class="why-visual-icon"><i class="fas fa-solar-panel"></i></div>
+          <h3>Shine Solar Energy</h3>
+          <p>Powering Karnataka's sustainable future, one rooftop at a time.</p>
+          <div class="why-visual-mini-stats">
+            <div><strong>500+</strong><span>Homes</span></div>
+            <div><strong>8 yrs</strong><span>Experience</span></div>
+            <div><strong>99%</strong><span>Satisfaction</span></div>
+          </div>
+          <div class="why-visual-badges">
+            <span><i class="fas fa-certificate"></i> MNRE Certified</span>
+            <span><i class="fas fa-headset"></i> 25-Year Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="brands-section reveal" style="padding:60px 0;background:var(--light);">
+  <div class="container">
+    <div class="section-title" style="margin-bottom:35px;">
+      <span class="label">Trusted Partners</span>
+      <h2 style="font-size:clamp(22px,3vw,32px);">Brands We Sell</h2>
+    </div>
+    <div class="brands-grid">
+      {% for brand in brands %}
+      <{% if brand.website %}a href="{{ brand.website }}" target="_blank"{% else %}div{% endif %} class="brand-card" title="{{ brand.name }}">
+        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" loading="lazy">
+      </{% if brand.website %}a{% else %}div{% endif %}>
+      {% empty %}
+      <p style="text-align:center;grid-column:1/-1;color:#94a3b8;">Brands coming soon.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">What We Offer</span>
+      <h2>Our Solar Services</h2>
+      <p>Complete solar solutions from design to installation and beyond.</p>
+    </div>
+    <div class="cards reveal">
+      {% if solutions %}
+        {% for s in solutions %}
+        <div class="card service-card{% if not s.display_image_url %} service-card--no-photo{% endif %}">
+          {% if s.display_image_url %}
+          <div class="card-photo-wrap">
+            <img src="{{ s.display_image_url }}" alt="{{ s.title }}" loading="lazy">
+          </div>
+          {% endif %}
+          <div class="card-icon-badge{% if not s.display_image_url %} card-icon-badge--standalone{% endif %}"><i class="{{ s.icon_class }}"></i></div>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.description }}</p>
+          <a href="{% url 'services' %}" style="color:var(--gold);font-weight:600;text-decoration:none;margin-top:10px;display:block;">Learn More →</a>
+        </div>
+        {% endfor %}
+      {% else %}
+      {# Fallback shown only if no Solar Solutions exist yet #}
+      <div class="card service-card">
+        <div class="card-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1655300256335-beef51a914fe?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="Residential rooftop solar installation" loading="lazy">
+        </div>
+        <div class="card-icon-badge"><i class="fas fa-home"></i></div>
+        <h3>Residential Solar</h3>
+        <p>Rooftop solar for homes with subsidy support. Cut your electricity bill by 80%.</p>
+        <a href="{% url 'services' %}" style="color:var(--gold);font-weight:600;text-decoration:none;margin-top:10px;display:block;">Learn More →</a>
+      </div>
+      <div class="card service-card">
+        <div class="card-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1707247111552-aaf74241058b?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="Commercial solar rooftop installation" loading="lazy">
+        </div>
+        <div class="card-icon-badge"><i class="fas fa-building"></i></div>
+        <h3>Commercial Solar</h3>
+        <p>Large-scale solar for offices, shops and commercial complexes.</p>
+        <a href="{% url 'services' %}" style="color:var(--gold);font-weight:600;text-decoration:none;margin-top:10px;display:block;">Learn More →</a>
+      </div>
+      <div class="card service-card">
+        <div class="card-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="Industrial scale solar plant" loading="lazy">
+        </div>
+        <div class="card-icon-badge"><i class="fas fa-industry"></i></div>
+        <h3>Industrial Solar</h3>
+        <p>High-capacity solar plants for factories and industrial units.</p>
+        <a href="{% url 'services' %}" style="color:var(--gold);font-weight:600;text-decoration:none;margin-top:10px;display:block;">Learn More →</a>
+      </div>
+      <div class="card service-card">
+        <div class="card-photo-wrap">
+          <img src="https://images.unsplash.com/photo-1668097613572-40b7c11c8727?fm=jpg&q=80&w=600&auto=format&fit=crop" alt="Solar panel maintenance technician" loading="lazy">
+        </div>
+        <div class="card-icon-badge"><i class="fas fa-wrench"></i></div>
+        <h3>AMC &amp; Maintenance</h3>
+        <p>Annual maintenance contracts to keep your system running at peak performance.</p>
+        <a href="{% url 'services' %}" style="color:var(--gold);font-weight:600;text-decoration:none;margin-top:10px;display:block;">Learn More →</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS PREVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">Our Range</span>
+      <h2>Featured Products</h2>
+      <p>A glimpse of the quality solar equipment we install and support.</p>
+    </div>
+    <div class="product-grid reveal">
+      {% for product in featured_products %}
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__category">{{ product.category.name }}</div>
+          <div class="product-card__name">{{ product.name }}</div>
+        </div>
+      </div>
+      {% empty %}
+      <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:#94a3b8;">
+        <i class="fas fa-box-open" style="font-size:36px;margin-bottom:12px;"></i>
+        <p>Products coming soon.</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="{% url 'products' %}" class="btn btn-primary"><i class="fas fa-arrow-right"></i> View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">Our Work</span>
+      <h2>Solar Installations Gallery</h2>
+      <p>A look at real rooftop, commercial and industrial solar installations we deliver.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      {% for g in gallery_images %}
+      <div class="gallery-item">
+        <img src="{{ g.display_image_url }}" alt="{{ g.title }}" loading="lazy">
+        <div class="gallery-caption">{{ g.title }}{% if g.subtitle %}<span>{{ g.subtitle }}</span>{% endif %}</div>
+      </div>
+      {% empty %}
+      {# Fallback shown only if no Gallery images exist yet #}
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1694327671725-e2a81cda3436?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Rows of rooftop solar panels" loading="lazy">
+        <div class="gallery-caption">Rooftop Array<span>Residential Installation</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1707247111552-aaf74241058b?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Large solar panel installation on commercial roof" loading="lazy">
+        <div class="gallery-caption">Commercial Rooftop<span>Business Installation</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Solar panel installation technician" loading="lazy">
+        <div class="gallery-caption">Expert Installation<span>Certified Technicians</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1668097613572-40b7c11c8727?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Solar panel maintenance work" loading="lazy">
+        <div class="gallery-caption">AMC & Service<span>Ongoing Maintenance</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1745187946672-2c1d8cf26a2b?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Solar panels installed on rooftop" loading="lazy">
+        <div class="gallery-caption">Finished Project<span>Ready & Generating</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1617269778723-73a40cf299bd?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Close up of solar panel cells" loading="lazy">
+        <div class="gallery-caption">Premium Panels<span>High-Efficiency Cells</span></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="label">Happy Customers</span>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Shine Solar installed 5kW on our home. Our electricity bill dropped from ₹3500 to just ₹300. Excellent service and professional team!</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R</div>
+          <div><div class="testimonial-name">Rajesh Kumar</div><div class="testimonial-location">Hubli, Karnataka</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Very professional installation. They handled all the BESCOM paperwork and subsidy. Great experience from start to finish.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">P</div>
+          <div><div class="testimonial-name">Priya Sharma</div><div class="testimonial-location">Dharwad, Karnataka</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">Installed 20kW commercial system for our factory. ROI came in just 3 years. Shine Solar team was fantastic throughout the process.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S</div>
+          <div><div class="testimonial-name">Suresh Patil</div><div class="testimonial-location">Gadag, Karnataka</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <div class="container">
+    <h2>Ready to Go Solar?</h2>
+    <p>Get a free site assessment and customized solar quote today.</p>
+    <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+      <a href="{% url 'contact' %}" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Get Free Quote</a>
+      <a href="tel:+918123715799" class="btn btn-secondary"><i class="fas fa-phone"></i> Call Now</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  const slides = document.querySelectorAll('#heroSlider .hero-slide');
+  const dots = document.querySelectorAll('#heroSlider .hero-dot');
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer;
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startAutoplay() { timer = setInterval(next, 5000); }
+  function resetAutoplay() { clearInterval(timer); startAutoplay(); }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { goTo(i); resetAutoplay(); });
+  });
+
+  startAutoplay();
+})();
+</script>
+{% endblock %}

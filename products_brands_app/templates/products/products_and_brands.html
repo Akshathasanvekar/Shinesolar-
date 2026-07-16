@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Products & Brands{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* ── Section wrapper ─────────────────────────────── */
+  .pb-section { padding: 60px 0; background: #f8fafc; }
+
+  /* ── Section headings ────────────────────────────── */
+  .pb-section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a2e44;
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 40px;
+  }
+  .pb-section-title::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 56px; height: 4px;
+    background: #f59e0b;
+    border-radius: 2px;
+  }
+  .text-center .pb-section-title::after { left: 50%; transform: translateX(-50%); }
+
+  /* ── Category filter tabs ────────────────────────── */
+  .category-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
+  .category-tab {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 50px;
+    background: #fff;
+    color: #475569;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .category-tab:hover, .category-tab.active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #fff;
+  }
+  .category-tab i { font-size: 0.9rem; }
+
+  /* ── Product cards ───────────────────────────────── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    overflow: hidden;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.12);
+  }
+  .product-card__img-wrap {
+    height: 180px;
+    background: #f1f5f9;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .product-card__img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    transition: transform .3s;
+  }
+  .product-card:hover .product-card__img-wrap img { transform: scale(1.06); }
+  .product-card__body { padding: 14px 16px; }
+  .product-card__category {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #f59e0b;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .product-card__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.35;
+  }
+
+  /* ── Brands strip ────────────────────────────────── */
+  .brands-section { padding: 60px 0; background: #fff; }
+  .brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+  }
+  .brand-card {
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #fff;
+    transition: all .2s;
+    min-height: 90px;
+  }
+  .brand-card:hover {
+    border-color: #f59e0b;
+    box-shadow: 0 4px 16px rgba(245,158,11,.15);
+    transform: translateY(-3px);
+  }
+  .brand-card img {
+    max-width: 100%;
+    max-height: 60px;
+    object-fit: contain;
+    filter: grayscale(40%);
+    transition: filter .2s;
+  }
+  .brand-card:hover img { filter: grayscale(0%); }
+
+  /* ── No products message ─────────────────────────── */
+  .no-products {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 576px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .brands-grid  { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .pb-section-title { font-size: 1.5rem; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ══════════════ PRODUCTS SECTION ══════════════ -->
+<section class="pb-section">
+  <div class="container">
+    <h2 class="pb-section-title">Our Products</h2>
+
+    <!-- Category filter tabs -->
+    <div class="category-tabs">
+      <a href="{% url 'products:products_and_brands' %}"
+         class="category-tab {% if not selected_category %}active{% endif %}">
+        <i class="fas fa-th-large"></i> All
+      </a>
+      {% for cat in categories %}
+      <a href="{% url 'products:product_category' slug=cat.slug %}"
+         class="category-tab {% if selected_category.slug == cat.slug %}active{% endif %}">
+        {% if cat.icon %}<i class="fas {{ cat.icon }}"></i>{% endif %}
+        {{ cat.name }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Product grid -->
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <div class="product-card__img-wrap">
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+        </div>
+        <div class="product-card__body">
+          <div class="product-card__category">{{ product.category.name }}</div>
+          <div class="product-card__name">{{ product.name }}</div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="no-products">
+        <i class="fas fa-box-open fa-2x mb-2"></i><br>
+        No products found in this category.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ BRANDS SECTION ══════════════ -->
+<section class="brands-section">
+  <div class="container">
+    <h2 class="pb-section-title text-center" style="text-align:center;">Brands We Sell</h2>
+
+    <div class="brands-grid">
+      {% for brand in brands %}
+      <div class="brand-card" title="{{ brand.name }}">
+        <img src="{{ brand.logo.url }}" alt="{{ brand.name }}">
+      </div>
+      {% empty %}
+      <p class="text-center text-muted w-100">No brands listed yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- FontAwesome 6 Free (skip if already loaded in base.html) -->
+<script>
+  if (!document.querySelector('link[href*="font-awesome"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';
+    document.head.appendChild(link);
+  }
+</script>
+{% endblock %}

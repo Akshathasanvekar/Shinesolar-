@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Services | Shine Solar Energy
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+
+    <div class="container">
+
+        <h1>Our Solar Services</h1>
+
+        <p>
+            Reliable Solar Solutions For Homes, Businesses & Industries
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Our Solar Solutions</h2>
+
+        </div>
+
+        <div class="cards">
+
+            {% if solutions %}
+                {% for s in solutions %}
+                <div class="card service-card{% if not s.display_image_url %} service-card--no-photo{% endif %}">
+                    {% if s.display_image_url %}
+                    <div class="card-photo-wrap">
+                        <img src="{{ s.display_image_url }}" alt="{{ s.title }}" loading="lazy">
+                    </div>
+                    {% endif %}
+                    <div class="card-icon-badge{% if not s.display_image_url %} card-icon-badge--standalone{% endif %}"><i class="{{ s.icon_class }}"></i></div>
+                    <h3>{{ s.title }}</h3>
+                    <p>{{ s.description }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+            {# Fallback cards shown only until Solar Solutions are added via the dashboard #}
+            <div class="card">
+
+                <i class="fa-solid fa-house"></i>
+
+                <h3>Residential Solar</h3>
+
+                <p>
+                    Smart rooftop solar systems designed to reduce
+                    electricity bills for homes.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-building"></i>
+
+                <h3>Commercial Solar</h3>
+
+                <p>
+                    Solar solutions for offices, shops and businesses.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-industry"></i>
+
+                <h3>Industrial Solar</h3>
+
+                <p>
+                    Large-scale solar systems for industrial power needs.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                <h3>Solar Maintenance</h3>
+
+                <p>
+                    Complete maintenance and support services.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-battery-full"></i>
+
+                <h3>Battery Backup</h3>
+
+                <p>
+                    Reliable energy storage solutions for uninterrupted power.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-charging-station"></i>
+
+                <h3>EV Charging</h3>
+
+                <p>
+                    Charge electric vehicles using clean solar energy.
+                </p>
+
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <span class="label">Our Process</span>
+
+            <h2>How It Works</h2>
+
+            <p>A simple, transparent journey from your first call to switching on clean, low-cost solar power.</p>
+
+        </div>
+
+        <div class="steps-row">
+
+            <div class="step-card">
+                <div class="step-badge-wrap">
+                    <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-comments"></i></div>
+                    <span class="step-num-bubble">1</span>
+                </div>
+                <h3>Consultation</h3>
+                <p>Understand your energy requirements.</p>
+            </div>
+
+            <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="step-card">
+                <div class="step-badge-wrap">
+                    <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+                    <span class="step-num-bubble">2</span>
+                </div>
+                <h3>Site Survey</h3>
+                <p>Analyse your location and power needs.</p>
+            </div>
+
+            <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="step-card">
+                <div class="step-badge-wrap">
+                    <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-solar-panel"></i></div>
+                    <span class="step-num-bubble">3</span>
+                </div>
+                <h3>Installation</h3>
+                <p>Professional solar installation.</p>
+            </div>
+
+            <div class="step-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+
+            <div class="step-card">
+                <div class="step-badge-wrap">
+                    <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-piggy-bank"></i></div>
+                    <span class="step-num-bubble">4</span>
+                </div>
+                <h3>Start Saving</h3>
+                <p>Enjoy clean energy and reduced bills.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section section-alt">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span class="label">Why Us</span>
+            <h2>Why Choose Our Services?</h2>
+            <p>What sets our solar installations apart, from the panels we use to the support we give.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card card--sm why-card">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-award"></i></div>
+                <h3>Premium Quality</h3>
+                <p>High-performance solar products.</p>
+            </div>
+
+            <div class="card card--sm why-card">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-user-gear"></i></div>
+                <h3>Expert Team</h3>
+                <p>Experienced engineers and technicians.</p>
+            </div>
+
+            <div class="card card--sm why-card">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-headset"></i></div>
+                <h3>Customer Support</h3>
+                <p>Complete support from consultation to maintenance.</p>
+            </div>
+
+            <div class="card card--sm why-card">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Eco Friendly</h3>
+                <p>Contributing towards a greener future.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>Ready To Switch To Solar?</h2>
+
+        <p>
+            Get a customized solar solution today.
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn btn-primary">
+            Get Free Consultation
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

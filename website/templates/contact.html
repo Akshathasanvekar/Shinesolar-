@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us | Shine Solar Energy{% endblock %}
+
+{% block content %}
+<div class="page-banner">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Get a free consultation and quote for your solar project</p>
+    <div class="breadcrumb"><a href="{% url 'home' %}">Home</a> <span>›</span> <span>Contact</span></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="alert alert-{{ msg.tags }}" style="max-width:800px;margin:0 auto 20px;">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <p>Ready to go solar? We offer free site visits and detailed system design. Contact us today!</p>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-text"><strong>Phone</strong><span>+91 8123715799</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-text"><strong>Email</strong><span>shinesolare@gmail.com</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-text"><strong>Location</strong><span>#2, Rajmahal Complex, Behind Sharada Hotel, Near Rotary School, New Cotton Market, Hubballi – 580029, Karnataka, India</span></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <div class="contact-text"><strong>Hours</strong><span>Mon – Sat: 9am to 6pm</span></div>
+        </div>
+        <div style="margin-top:30px;">
+          <a href="https://wa.me/918123715799" class="btn btn-primary" style="background:#25D366;box-shadow:0 4px 15px rgba(37,211,102,.4);">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="contact-form-box">
+        <h3 style="color:var(--primary);margin-bottom:25px;font-size:22px;">Send Us a Message</h3>
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" name="phone" placeholder="+91 XXXXXXXXXX" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select name="service">
+              <option value="">Select a service...</option>
+              <option>Residential Solar</option>
+              <option>Commercial Solar</option>
+              <option>Industrial Solar</option>
+              <option>AMC & Maintenance</option>
+              <option>Solar Water Heater</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea name="message" placeholder="Tell us about your requirements..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:16px;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" style="padding-top:0;">
+  <div class="container">
+    <div class="section-title">
+      <span class="label">Find Us</span>
+      <h2>Visit Our Office</h2>
+      <p>#2, Rajmahal Complex, Behind Sharada Hotel, Near Rotary School, New Cotton Market, Hubballi – 580029, Karnataka, India</p>
+    </div>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps?q=%232%2C%20Rajmahal%20Complex%2C%20Behind%20Sharada%20Hotel%2C%20Near%20Rotary%20School%2C%20New%20Cotton%20Market%2C%20Hubballi%20%E2%80%93%20580029%2C%20Karnataka%2C%20India&output=embed"
+        width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Shine Solar Energy office location">
+      </iframe>
+    </div>
+  </div>
+</section>
+{% endblock %}

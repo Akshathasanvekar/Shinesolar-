@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About Us | Shine Solar Energy
+{% endblock %}
+
+{% block content %}
+
+<section class="page-banner">
+    <div class="container">
+        <h1>About Shine Solar Energy</h1>
+        <p>Powering a Cleaner and Brighter Future</p>
+    </div>
+</section>
+
+<section class="section founder-hero">
+
+    <div class="container">
+
+        <div class="founder-hero-grid">
+
+            <div class="founder-photo-frame">
+                {% if founder and founder.image %}
+                    <img src="{{ founder.image.url }}" alt="{{ founder.name }}, {{ founder.role }}">
+                {% else %}
+                    <img src="{% static 'images/founder.jpg' %}" alt="Owner, Founder & Director">
+                {% endif %}
+                <div class="founder-stat-badge">
+                    <span class="num">10<span class="unit">+</span></span>
+                    <span class="badge-label">Years Experience</span>
+                </div>
+            </div>
+
+            <div class="founder-info">
+
+                <span class="about-badge"><i class="fa-solid fa-sun"></i> Meet The Founder</span>
+
+                <h2 class="founder-headline">Rooted In Trust,<br><em>Rising With The Sun</em></h2>
+
+                <p class="founder-meta">
+                    {% if founder %}{{ founder.name }}{% else %}Mr. Owner Name{% endif %}
+                    <span class="dot">•</span>
+                    {% if founder %}{{ founder.role }}{% else %}Owner, Founder &amp; Director{% endif %}
+                </p>
+
+                <span class="founder-divider"></span>
+
+                <p class="founder-bio">
+                    {% if founder %}{{ founder.bio }}{% else %}With a passion for renewable energy and innovation, Mr. Owner Name started Shine Solar Energy with a vision to provide dependable solar solutions.{% endif %}
+                </p>
+
+                <p class="founder-bio">
+                    Our commitment to honest advice, quality installations and dependable after-sales support has made Shine Solar Energy a name homes and businesses trust.
+                </p>
+
+                <div class="founder-pills">
+                    {% if founder and founder.get_skills_list %}
+                        {% for skill in founder.get_skills_list %}
+                        <div class="founder-pill"><span class="pill-check"><i class="fa-solid fa-check"></i></span>{{ skill }}</div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="founder-pill"><span class="pill-check"><i class="fa-solid fa-check"></i></span>Solar Energy Solutions</div>
+                        <div class="founder-pill"><span class="pill-check"><i class="fa-solid fa-check"></i></span>Project Management</div>
+                        <div class="founder-pill"><span class="pill-check"><i class="fa-solid fa-check"></i></span>Customer Service</div>
+                        <div class="founder-pill"><span class="pill-check"><i class="fa-solid fa-check"></i></span>Renewable Energy Development</div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+
+        <div class="about-intro">
+
+            <div class="about-intro-image">
+                {% if about_page.display_intro_image_url %}
+                <img src="{{ about_page.display_intro_image_url }}" alt="Shine Solar Energy solar panel installation">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?fm=jpg&q=80&w=700&auto=format&fit=crop" alt="Shine Solar Energy solar panel installation">
+                {% endif %}
+            </div>
+
+            <div class="about-intro-content">
+                <span class="about-badge"><i class="fa-solid fa-sun"></i> Who We Are</span>
+                <h2>Trusted Solar Partner For Homes &amp; Businesses</h2>
+
+                <p>
+                    Shine Solar Energy is a trusted solar energy company dedicated
+                    to providing reliable, efficient and sustainable solar solutions.
+                    We help homes, businesses and industries switch to clean energy
+                    while reducing electricity costs.
+                </p>
+
+                <p>
+                    With advanced solar technology, quality products and professional
+                    installation, we deliver solutions that create long-term value
+                    for our customers.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span class="label">What Drives Us</span>
+            <h2>Our Values</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card card--sm">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-medal"></i></div>
+                <h3>Quality</h3>
+                <p>Delivering reliable solar solutions.</p>
+            </div>
+
+            <div class="card card--sm">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-handshake"></i></div>
+                <h3>Trust</h3>
+                <p>Building long-term customer relationships.</p>
+            </div>
+
+            <div class="card card--sm">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>Using modern solar technology.</p>
+            </div>
+
+            <div class="card card--sm">
+                <div class="card-icon-badge card-icon-badge--standalone"><i class="fa-solid fa-leaf"></i></div>
+                <h3>Sustainability</h3>
+                <p>Protecting the environment.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats-strip">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="num">500<span class="unit">+</span></div>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-item">
+                <div class="num">10<span class="unit">+</span></div>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <div class="num">5<span class="unit">MW</span></div>
+                <p>Solar Installed</p>
+            </div>
+            <div class="stat-item">
+                <div class="num">98<span class="unit">%</span></div>
+                <p>Happy Clients</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+
+    <div class="container">
+
+        <h2>Ready To Switch To Solar?</h2>
+
+        <p>
+            Get a customized solar solution and start saving today.
+        </p>
+
+        <a href="{% url 'contact' %}" class="btn btn-primary">
+            Contact Us
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

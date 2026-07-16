@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Shine Solar Energy</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="login-page">
+  <div class="login-bg-slides">
+    {% for img in login_bg_images %}
+      <div class="login-bg-slide{% if forloop.first %} active{% endif %}" style="background-image:url('{{ img }}')"></div>
+    {% endfor %}
+  </div>
+  <div class="login-bg-overlay"></div>
+
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="{% static 'images/logo.png' %}" alt="Shine Solar">
+      <h2>Admin Dashboard</h2>
+      <p>Sign in to manage your website</p>
+    </div>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username"><i class="fas fa-user"></i> Username</label>
+        <input type="text" name="username" id="username" placeholder="Enter username" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password"><i class="fas fa-lock"></i> Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:10px;font-size:16px;padding:16px;">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+    </form>
+
+    <div style="text-align:center;margin-top:25px;padding-top:20px;border-top:1px solid #e2e8f0;">
+      <a href="{% url 'home' %}" style="color:#64748b;text-decoration:none;font-size:14px;">
+        <i class="fas fa-arrow-left"></i> Back to Website
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    const slides = document.querySelectorAll('.login-bg-slide');
+    if (slides.length < 2) return;
+    let current = 0;
+    setInterval(function () {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
+  })();
+</script>
+</body>
+</html>

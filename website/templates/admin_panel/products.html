@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Admin</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="sidebar-logo"><img src="{% static 'images/logo.png' %}" alt="Logo"><span>Shine Solar</span></div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">Main</div>
+      <a href="{% url 'admin_dashboard' %}" class="sidebar-link"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+      <a href="{% url 'home' %}" class="sidebar-link" target="_blank"><i class="fas fa-globe"></i><span>View Website</span></a>
+      <div class="sidebar-section">Content</div>
+      <a href="{% url 'admin_products' %}" class="sidebar-link active"><i class="fas fa-solar-panel"></i><span>Products</span></a>
+      <a href="{% url 'admin_brands' %}" class="sidebar-link"><i class="fas fa-tags"></i><span>Brands</span></a>
+      <a href="{% url 'admin_hero_slides' %}" class="sidebar-link"><i class="fas fa-images"></i><span>Hero Slider</span></a>
+      <a href="{% url 'admin_solutions' %}" class="sidebar-link"><i class="fas fa-layer-group"></i><span>Solar Solutions</span></a>
+      <a href="{% url 'admin_projects' %}" class="sidebar-link"><i class="fas fa-building"></i><span>Projects</span></a>
+      <a href="{% url 'admin_gallery' %}" class="sidebar-link"><i class="fas fa-panorama"></i><span>Gallery</span></a>
+      <a href="{% url 'admin_contacts' %}" class="sidebar-link"><i class="fas fa-envelope"></i><span>Enquiries</span></a>
+            <a href="{% url 'admin_about_edit' %}" class="sidebar-link">
+        <i class="fas fa-info-circle"></i><span>About Page</span>
+      </a>
+
+      <div class="sidebar-section">System</div>
+      <a href="/admin/" class="sidebar-link"><i class="fas fa-cog"></i><span>Django Admin</span></a>
+      <a href="{% url 'admin_logout' %}" class="sidebar-link"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1><i class="fas fa-solar-panel" style="color:var(--gold);margin-right:10px;"></i>Products</h1>
+      <a href="{% url 'admin_product_add' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
+    </div>
+    <div class="admin-content">
+      {% if messages %}{% for msg in messages %}<div class="alert alert-{{ msg.tags }}">{{ msg }}</div>{% endfor %}{% endif %}
+      <div class="admin-table-card">
+        <div class="admin-table-header">
+          <h3>All Products ({{ products.count }})</h3>
+        </div>
+        <table class="admin-table">
+          <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            {% for p in products %}
+            <tr>
+              <td>{% if p.image %}<img src="{{ p.image.url }}" style="height:50px;width:60px;object-fit:contain;border-radius:6px;border:1px solid #e2e8f0;">{% else %}<div style="height:50px;width:60px;background:#f1f5f9;border-radius:6px;display:flex;align-items:center;justify-content:center;"><i class="fas fa-image" style="color:#94a3b8;"></i></div>{% endif %}</td>
+              <td><strong>{{ p.name }}</strong></td>
+              <td>{{ p.category.name }}</td>
+              <td>{% if p.is_active %}<span class="badge badge-active">Active</span>{% else %}<span class="badge badge-inactive">Inactive</span>{% endif %}</td>
+              <td>
+                <a href="{% url 'admin_product_edit' p.id %}" style="color:var(--primary);text-decoration:none;margin-right:12px;font-size:13px;font-weight:600;"><i class="fas fa-edit"></i> Edit</a>
+                <a href="{% url 'admin_product_delete' p.id %}" style="color:#dc2626;text-decoration:none;font-size:13px;font-weight:600;" onclick="return confirm('Delete this product?')"><i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" style="text-align:center;padding:40px;color:#94a3b8;">No products. <a href="{% url 'admin_product_add' %}">Add one →</a></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
